@@ -4,6 +4,9 @@ import id.my.hendisantika.virtualthread.service.PlatformReportService;
 import id.my.hendisantika.virtualthread.service.ReportService;
 import id.my.hendisantika.virtualthread.service.VirtualReportService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,4 +31,10 @@ public class ReportController {
     private final PlatformReportService platformReportService;
 
     private final VirtualReportService virtualReportService;
+
+    @PostMapping("/{region}")
+    public ResponseEntity<String> generateReport(@PathVariable String region) {
+        reportService.generateReportForRegion(region);
+        return ResponseEntity.ok("✅ report started for region: " + region);
+    }
 }
