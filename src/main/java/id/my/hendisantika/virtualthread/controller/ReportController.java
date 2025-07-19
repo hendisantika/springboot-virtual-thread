@@ -43,4 +43,10 @@ public class ReportController {
         platformReportService.generateReportForRegion(region);
         return ResponseEntity.ok("✅ Platform report started for region: " + region);
     }
+
+    @PostMapping("/virtual/{region}")
+    public ResponseEntity<String> generateReportVirtual(@PathVariable String region) {
+        virtualReportService.generateReportForRegion(region);
+        return ResponseEntity.ok("✅ Virtual report started for region: " + region);
+    }
 }
