@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.3'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'io.gatling.gradle' version '3.12.0'
 }
 
 group = 'id.my.hendisantika'
@@ -37,8 +38,15 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testRuntimeOnly 'com.h2database:h2'
+    testImplementation 'io.gatling:gatling-test-framework:3.12.0'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+gatling {
+    gatlingVersion = '3.12.0'
+    jvmArgs = ['-server', '-Xms512M', '-Xmx512M']
+    systemProperties = ['file.encoding': 'UTF-8']
 }
