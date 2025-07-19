@@ -69,6 +69,28 @@ The application provides three endpoints for generating reports:
 
 Where `{region}` is a parameter specifying the region for which to generate the report (e.g., "US", "EU", etc.).
 
+## API Documentation
+
+The application includes Swagger UI for interactive API documentation and testing. Once the application is running, you
+can access the API documentation at:
+
+```
+http://localhost:8080/swagger-ui
+```
+
+This interface provides:
+
+- Detailed information about all available endpoints
+- The ability to try out API calls directly from the browser
+- Request and response schemas
+- Available parameters and their descriptions
+
+The raw OpenAPI specification is also available at:
+
+```
+http://localhost:8080/v3/api-docs
+```
+
 ## Performance Testing
 
 ### Apache Benchmark (ab) Testing
