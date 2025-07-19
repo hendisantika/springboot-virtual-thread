@@ -1,10 +1,13 @@
 package id.my.hendisantika.virtualthread.service;
 
+import id.my.hendisantika.virtualthread.entity.Customer;
 import id.my.hendisantika.virtualthread.repository.CustomerRepository;
+import id.my.hendisantika.virtualthread.util.CsvReportUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.Executor;
 
 /**
@@ -26,5 +29,20 @@ public class VirtualReportService {
     private final CustomerRepository repository;
 
     private final Executor virtualThreadExecutor;
+
+    public void generateReportForRegion(String region) {
+
+        virtualThreadExecutor.execute(() -> {
+            log.info("Virtual generating report for region: {} | {}", region, Thread.currentThread());
+
+            List<Customer> customers = repository.findByRegion(region);//1
+            try {
+                CsvReportUtil.writeCustomersToCsv("virtual_" + region, customers);//2
+            } catch (Exception e) {
+                System.out.println("❌ Virtual Error writing report for region: " + region);
+            }
+        });
+
+    }
 
 }
