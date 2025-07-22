@@ -194,6 +194,11 @@ open-source load testing tool that provides detailed reports and metrics.
    - JSON payload with name, email, and age
    - Assertions for response time (< 1500ms), success rate (> 95%), and failed requests (< 5)
 
+3. **ReportControllerSimulation**: Tests all three report generation endpoints with:
+   - Ramping up to 50 users over 30 seconds for each endpoint
+   - Assertions for response time (< 3000ms), success rate (> 95%), and failed requests (< 10)
+   - Compares performance between standard, platform, and virtual thread implementations
+
 #### Running Gatling Simulations
 
 To run the Gatling simulations, use the Gradle task:
@@ -203,6 +208,13 @@ To run the Gatling simulations, use the Gradle task:
 ```
 
 This will execute all simulations and generate detailed HTML reports in the `build/reports/gatling` directory.
+
+#### Detailed Gatling Documentation
+
+For more detailed information about the Gatling tests for the ReportController, see:
+
+- [GATLING.md](GATLING.md) - Detailed instructions on running and analyzing the Gatling tests
+- [GATLING_REPORT_SAMPLE.md](GATLING_REPORT_SAMPLE.md) - Sample Gatling report structure and interpretation
 
 ### k6 Testing
 
